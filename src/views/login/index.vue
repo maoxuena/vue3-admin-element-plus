@@ -7,18 +7,20 @@
       <!-- 用户名 -->
       <el-form-item prop="username">
         <span class="svg-container">
-          <el-icon><user-filled /></el-icon>
+          <svg-icon icon="user"></svg-icon>
         </span>
         <el-input placeholder="用户名" name="username" type="text" />
       </el-form-item>
       <!-- 密码 -->
       <el-form-item prop="password">
         <span class="svg-container">
-          <el-icon><lock /></el-icon>
+          <svg-icon icon="password"></svg-icon>
         </span>
         <el-input placeholder="密码" name="password" type="password" />
         <span class="show-pwd">
-          <el-icon><lock /></el-icon>
+          <span class="svg-container">
+            <svg-icon icon="eye"></svg-icon>
+          </span>
         </span>
       </el-form-item>
       <!-- 登录按钮 -->
@@ -29,9 +31,7 @@
   </div>
 </template>
 
-<script setup>
-import { UserFilled, Lock } from '@element-plus/icons'
-</script>
+<script setup></script>
 
 <style lang="scss" scoped>
 $bg: #2d3a4b;
