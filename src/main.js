@@ -15,7 +15,17 @@ import installIcons from '@/icons'
 // 导入路由鉴权
 import './permission'
 
+// 统一导入el-icon图标
+import * as ElIconModules from '@element-plus/icons-vue'
+// 导入转换图标名称的函数
+import { transElIconName } from './utils/index.js'
+
 const app = createApp(App)
 installElementPlus(app)
 installIcons(app)
+// 统一注册el-icon图标
+for (const iconName in ElIconModules) {
+  app.component(transElIconName(iconName), ElIconModules[iconName])
+}
+
 app.use(store).use(router).use(i18n).mount('#app')

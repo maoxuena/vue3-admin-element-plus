@@ -18,7 +18,10 @@ const privateRoutes = [
       {
         path: '/article/ranking',
         name: 'articleRanking',
-        component: () => import(/* webpackChunkName: "article" */ '@/views/article/ranking/index'),
+        component: () =>
+          import(
+            /* webpackChunkName: "article" */ '@/views/article/ranking/index'
+          ),
         meta: {
           title: 'articleRanking',
           icon: 'article-ranking'
@@ -27,7 +30,10 @@ const privateRoutes = [
       {
         path: '/article/:id',
         name: 'articleDetail',
-        component: () => import(/* webpackChunkName: "article" */ '@/views/article/detail/index'),
+        component: () =>
+          import(
+            /* webpackChunkName: "article" */ '@/views/article/detail/index'
+          ),
         meta: {
           title: 'articleDetail'
         }
@@ -47,7 +53,8 @@ const privateRoutes = [
       {
         path: '/system/user',
         name: 'systemUser',
-        component: () => import(/* webpackChunkName: "user" */ '@/views/system/user/index'),
+        component: () =>
+          import(/* webpackChunkName: "user" */ '@/views/system/user/index'),
         meta: {
           title: 'userManage',
           icon: 'personnel-manage'
@@ -56,7 +63,10 @@ const privateRoutes = [
       {
         path: '/system/user/info/:id',
         name: 'userInfo',
-        component: () => import(/* webpackChunkName: "user" */ '@/views/system/user/info/index'),
+        component: () =>
+          import(
+            /* webpackChunkName: "user" */ '@/views/system/user/info/index'
+          ),
         props: true,
         meta: {
           title: 'userInfo'
@@ -65,7 +75,8 @@ const privateRoutes = [
       {
         path: '/system/role',
         name: 'systemRole',
-        component: () => import(/* webpackChunkName: "role" */ '@/views/system/role/index'),
+        component: () =>
+          import(/* webpackChunkName: "role" */ '@/views/system/role/index'),
         meta: {
           title: 'roleManage',
           icon: 'role'
@@ -74,7 +85,10 @@ const privateRoutes = [
       {
         path: '/system/permission',
         name: 'systemPermission',
-        component: () => import(/* webpackChunkName: "permission" */ '@/views/system/permission/index'),
+        component: () =>
+          import(
+            /* webpackChunkName: "permission" */ '@/views/system/permission/index'
+          ),
         meta: {
           title: 'permissionManage',
           icon: 'permission'
@@ -90,7 +104,8 @@ const privateRoutes = [
 const publicRoutes = [
   {
     path: '/login',
-    component: () => import(/* webpackChunkName: "login" */'@/views/login/index')
+    component: () =>
+      import(/* webpackChunkName: "login" */ '@/views/login/index')
   },
   {
     path: '/',
@@ -105,7 +120,8 @@ const publicRoutes = [
       {
         path: '/dashboard',
         name: 'dashboard',
-        component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index'),
+        component: () =>
+          import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index'),
         meta: {
           title: 'dashboard',
           icon: 'el-icon-monitor'
@@ -115,7 +131,8 @@ const publicRoutes = [
       {
         path: '/profile',
         name: 'profile',
-        component: () => import(/* webpackChunkName: "profile" */ '@/views/profile/index'),
+        component: () =>
+          import(/* webpackChunkName: "profile" */ '@/views/profile/index'),
         meta: {
           title: 'profile',
           icon: 'el-icon-user'
@@ -125,13 +142,15 @@ const publicRoutes = [
       {
         path: '/404',
         name: '404',
-        component: () => import(/* webpackChunkName: "error" */ '@/views/error/404')
+        component: () =>
+          import(/* webpackChunkName: "error" */ '@/views/error/404')
       },
       // 401
       {
         path: '/401',
         name: '401',
-        component: () => import(/* webpackChunkName: "error" */ '@/views/error/401')
+        component: () =>
+          import(/* webpackChunkName: "error" */ '@/views/error/401')
       }
     ]
   }

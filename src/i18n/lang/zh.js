@@ -1,6 +1,8 @@
 export default {
   login: {
     title: '用户登录',
+    username: '用户名',
+    password: '密码',
     loginBtn: '登录',
     usernameRule: '用户名为必填项',
     passwordRule: '密码不能少于6位',

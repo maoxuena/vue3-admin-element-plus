@@ -7,7 +7,8 @@
       :rules="loginRules"
     >
       <div class="title-container">
-        <h3 class="title">用户登录</h3>
+        <h3 class="title">{{ $t('msg.login.title') }}</h3>
+        <lang-select class="lang-select" effect="light"></lang-select>
       </div>
       <!-- 用户名 -->
       <el-form-item prop="username">
@@ -15,7 +16,7 @@
           <svg-icon icon="user"></svg-icon>
         </span>
         <el-input
-          placeholder="用户名"
+          :placeholder="$t('msg.login.username')"
           name="username"
           type="text"
           v-model="loginForm.username"
@@ -27,7 +28,7 @@
           <svg-icon icon="password"></svg-icon>
         </span>
         <el-input
-          placeholder="密码"
+          :placeholder="$t('msg.login.password')"
           name="password"
           :type="passwordType"
           v-model="loginForm.password"
@@ -47,7 +48,7 @@
         style="width: 100%; margin-bottom: 30px"
         :loading="loading"
         @click="handleLogin"
-        >登录</el-button
+        >{{ $t('msg.login.loginBtn') }}</el-button
       >
     </el-form>
   </div>
@@ -55,20 +56,23 @@
 
 <script setup>
 import { ref } from 'vue'
-import { validatePassword } from './rules'
 import { useStore } from 'vuex'
+import { useI18n } from 'vue-i18n'
+import { validatePassword } from './rules'
+import LangSelect from '@/components/LangSelect/index.vue'
 // 数据源
 const loginForm = ref({
   username: 'super-admin',
   password: '123456'
 })
 // 验证规则
+const i18n = useI18n()
 const loginRules = ref({
   username: [
     {
       required: true,
       trigger: 'blur',
-      message: '用户名为必填项'
+      message: i18n.t('msg.login.usernameRule')
     }
   ],
   password: [
@@ -119,6 +123,7 @@ $bg: #2d3a4b;
 $dark_gray: #889aa4;
 $light_gray: #eee;
 $cursor: #fff;
+$height: 40px;
 
 .login-container {
   min-height: 100%;
@@ -143,7 +148,7 @@ $cursor: #fff;
 
     :deep(.el-input) {
       display: inline-block;
-      height: 47px;
+      height: $height;
       width: 85%;
 
       input {
@@ -153,8 +158,9 @@ $cursor: #fff;
         border-radius: 0px;
         padding: 12px 5px 12px 15px;
         color: $light_gray;
-        height: 47px;
+        height: $height;
         caret-color: $cursor;
+        box-shadow: none;
       }
     }
   }
@@ -173,7 +179,7 @@ $cursor: #fff;
   }
 
   .svg-container {
-    padding: 6px 5px 6px 15px;
+    padding: 4px 5px 4px 15px;
     color: $dark_gray;
     vertical-align: middle;
     display: inline-block;
