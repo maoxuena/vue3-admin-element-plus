@@ -21,13 +21,14 @@ export default {
     `
   },
   route: {
+    dashboard: '仪表盘',
     profile: '个人中心',
-    user: '用户',
+    systemManage: '系统管理',
     excelImport: 'Excel导入',
     userManage: '员工管理',
     userInfo: '员工信息',
-    roleList: '角色列表',
-    permissionList: '权限列表',
+    roleManage: '角色管理',
+    permissionManage: '权限管理',
     article: '文章',
     articleRanking: '文章排名',
     articleCreate: '创建文章',

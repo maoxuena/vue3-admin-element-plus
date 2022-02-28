@@ -21,13 +21,14 @@ export default {
     `
   },
   route: {
+    dashboard: 'Dashboard',
     profile: 'Profile',
-    user: 'user',
+    systemManage: 'SystemManage',
     excelImport: 'ExcelImport',
     userManage: 'EmployeeManage',
     userInfo: 'UserInfo',
-    roleList: 'RoleList',
-    permissionList: 'PermissionList',
+    roleManage: 'RoleManage',
+    permissionManage: 'PermissionManage',
     article: 'article',
     articleRanking: 'ArticleRanking',
     articleCreate: 'ArticleCreate',
