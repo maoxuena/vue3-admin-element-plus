@@ -3,6 +3,8 @@
     <hamburger class="hamburger-container" />
     <breadcrumb id="guide-breadcrumb" class="breadcrumb-container" />
     <div class="right-menu">
+      <!-- 全屏 -->
+      <screenfull class="right-menu-item hover-effect" />
       <!-- 更换主题 -->
       <theme-select class="right-menu-item hover-effect"></theme-select>
       <!-- 语言切换 -->
@@ -40,6 +42,7 @@ import Hamburger from '@/components/Hamburger'
 import Breadcrumb from '@/components/Breadcrumb'
 import LangSelect from '@/components/LangSelect'
 import ThemeSelect from '@/components/ThemeSelect'
+import Screenfull from '@/components/Screenfull'
 const store = useStore()
 const logout = () => {
   store.dispatch('user/logout')
