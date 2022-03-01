@@ -3,6 +3,8 @@
     <hamburger class="hamburger-container" />
     <breadcrumb id="guide-breadcrumb" class="breadcrumb-container" />
     <div class="right-menu">
+      <!-- 更换主题 -->
+      <theme-select class="right-menu-item hover-effect"></theme-select>
       <!-- 语言切换 -->
       <lang-select class="right-menu-item hover-effect" />
       <!-- 头像 -->
@@ -37,6 +39,7 @@ import { useStore } from 'vuex'
 import Hamburger from '@/components/Hamburger'
 import Breadcrumb from '@/components/Breadcrumb'
 import LangSelect from '@/components/LangSelect'
+import ThemeSelect from '@/components/ThemeSelect'
 const store = useStore()
 const logout = () => {
   store.dispatch('user/logout')
