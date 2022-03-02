@@ -3,6 +3,8 @@
     <hamburger class="hamburger-container" />
     <breadcrumb id="guide-breadcrumb" class="breadcrumb-container" />
     <div class="right-menu">
+      <!-- 全局搜索 -->
+      <header-search class="right-menu-item hover-effect"></header-search>
       <!-- 全屏 -->
       <screenfull class="right-menu-item hover-effect" />
       <!-- 更换主题 -->
@@ -43,6 +45,7 @@ import Breadcrumb from '@/components/Breadcrumb'
 import LangSelect from '@/components/LangSelect'
 import ThemeSelect from '@/components/ThemeSelect'
 import Screenfull from '@/components/Screenfull'
+import HeaderSearch from '@/components/HeaderSearch'
 const store = useStore()
 const logout = () => {
   store.dispatch('user/logout')
@@ -82,17 +85,17 @@ const logout = () => {
 
     :deep(.right-menu-item) {
       display: inline-block;
-      padding: 0 18px 0 0;
+      padding: 0 9px;
       font-size: 24px;
       color: #5a5e66;
       vertical-align: text-bottom;
 
       &.hover-effect {
         cursor: pointer;
-        transition: background 0.3s;
+        transition: color 0.3s;
 
         &:hover {
-          background: rgba(0, 0, 0, 0.025);
+          color: var(--el-color-primary);
         }
       }
     }
