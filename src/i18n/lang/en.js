@@ -67,6 +67,7 @@ export default {
     close: 'close',
     next: 'next',
     prev: 'previous',
+    done: 'Done',
     guideTitle: 'guidance',
     guideDesc: 'Turn on the boot function',
     hamburgerTitle: 'Hamburger button',

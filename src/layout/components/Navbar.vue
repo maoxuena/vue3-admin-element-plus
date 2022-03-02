@@ -3,6 +3,8 @@
     <hamburger class="hamburger-container" />
     <breadcrumb id="guide-breadcrumb" class="breadcrumb-container" />
     <div class="right-menu">
+      <!-- 功能引导 -->
+      <guide class="right-menu-item hover-effect" />
       <!-- 全局搜索 -->
       <header-search class="right-menu-item hover-effect"></header-search>
       <!-- 全屏 -->
@@ -46,6 +48,7 @@ import LangSelect from '@/components/LangSelect'
 import ThemeSelect from '@/components/ThemeSelect'
 import Screenfull from '@/components/Screenfull'
 import HeaderSearch from '@/components/HeaderSearch'
+import Guide from '@/components/Guide'
 const store = useStore()
 const logout = () => {
   store.dispatch('user/logout')
