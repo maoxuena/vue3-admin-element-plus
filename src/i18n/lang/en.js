@@ -40,6 +40,7 @@ export default {
   },
   tagsView: {
     refresh: 'Refresh',
+    closeLeft: 'Close Lefts',
     closeRight: 'Close Rights',
     closeOther: 'Close Others'
   },

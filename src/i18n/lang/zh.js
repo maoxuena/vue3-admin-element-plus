@@ -40,6 +40,7 @@ export default {
   },
   tagsView: {
     refresh: '刷新',
+    closeLeft: '关闭左侧',
     closeRight: '关闭右侧',
     closeOther: '关闭其他'
   },

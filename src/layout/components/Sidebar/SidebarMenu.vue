@@ -38,7 +38,6 @@ const activeMenu = computed(() => {
   }
   return path
 })
-console.log(routes, activeMenu)
 </script>
 
 <style lang="scss" scoped></style>
