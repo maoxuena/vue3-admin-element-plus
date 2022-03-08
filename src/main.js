@@ -11,6 +11,8 @@ import '@/styles/index.scss'
 
 // 导入 svgIcon
 import installIcons from '@/icons'
+// 全局属性 filter
+import installFilter from '@/filters'
 
 // 导入路由鉴权
 import './permission'
@@ -23,6 +25,7 @@ import { transElIconName } from './utils/index.js'
 const app = createApp(App)
 installElementPlus(app)
 installIcons(app)
+installFilter(app)
 // 统一注册el-icon图标
 for (const iconName in ElIconModules) {
   app.component(transElIconName(iconName), ElIconModules[iconName])
