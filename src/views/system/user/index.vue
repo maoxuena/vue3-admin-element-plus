@@ -1,14 +1,27 @@
 <template>
   <div class="user-manage-container">
+    <el-card class="header">
+      <el-button type="primary" @click="onImportExcelClick">{{
+        $t('msg.excel.importExcel')
+      }}</el-button>
+    </el-card>
     <el-card>
       <el-table :data="tableData" border style="width: 100%">
         <!-- 索引 -->
         <el-table-column label="#" type="index" />
         <!-- 姓名 -->
-        <el-table-column prop="username" :label="$t('msg.excel.name')">
+        <el-table-column
+          prop="username"
+          width="120"
+          :label="$t('msg.excel.name')"
+        >
         </el-table-column>
         <!-- 手机号 -->
-        <el-table-column prop="mobile" :label="$t('msg.excel.mobile')">
+        <el-table-column
+          prop="mobile"
+          width="120"
+          :label="$t('msg.excel.mobile')"
+        >
         </el-table-column>
         <!-- 头像 -->
         <el-table-column :label="$t('msg.excel.avatar')" align="center">
@@ -21,7 +34,7 @@
           </template>
         </el-table-column>
         <!-- 角色 -->
-        <el-table-column :label="$t('msg.excel.role')">
+        <el-table-column width="180" :label="$t('msg.excel.role')">
           <template #default="{ row }">
             <div v-if="row.role && row.role.length > 0">
               <el-tag v-for="item in row.role" :key="item.id" size="mini">{{
@@ -34,7 +47,7 @@
           </template>
         </el-table-column>
         <!-- 开通时间 -->
-        <el-table-column :label="$t('msg.excel.openTime')">
+        <el-table-column width="120" :label="$t('msg.excel.openTime')">
           <template #default="{ row }">
             {{ $filters.dateFilter(row.openTime) }}
           </template>
@@ -43,7 +56,7 @@
         <el-table-column
           :label="$t('msg.excel.action')"
           fixed="right"
-          width="250"
+          width="200"
         >
           <template #default>
             <el-button type="primary" size="small">{{
@@ -72,13 +85,22 @@
         </el-pagination>
       </div>
     </el-card>
+    <el-dialog
+      v-model="dialogVisible"
+      title="导入用户"
+      width="360px"
+      :before-close="handleClose"
+    >
+      <import-comp @uploadSuccess="uploadSuccess"></import-comp>
+    </el-dialog>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onActivated } from 'vue'
 import { watchSwitchLang } from '@/utils/i18n'
 import { getUserManageList } from '@/api/user-manage'
+import ImportComp from './import'
 
 // 数据相关
 const tableData = ref([])
@@ -98,6 +120,8 @@ getListData()
 
 // 监听语言切换
 watchSwitchLang(getListData)
+// 重新激活页面后，重新加载数据
+onActivated(getListData)
 
 // 分页相关
 /**
@@ -113,6 +137,32 @@ const handleSizeChange = currentSize => {
  */
 const handleCurrentChange = currentPage => {
   page.value = currentPage
+  getListData()
+}
+
+// 导入相关
+const dialogVisible = ref(false)
+/**
+ * excel 导入点击事件
+ */
+const onImportExcelClick = () => {
+  dialogVisible.value = true
+}
+
+/**
+ * 关闭dialog
+ */
+const handleClose = () => {
+  dialogVisible.value = false
+}
+
+/**
+ * 导入成功
+ */
+const uploadSuccess = () => {
+  // 关闭dialog
+  handleClose()
+  // 重新获取数据
   getListData()
 }
 </script>
