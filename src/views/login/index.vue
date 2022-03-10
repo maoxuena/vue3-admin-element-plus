@@ -48,8 +48,9 @@
         style="width: 100%; margin-bottom: 30px"
         :loading="loading"
         @click="handleLogin"
-        >{{ $t('msg.login.loginBtn') }}</el-button
       >
+        {{ $t('msg.login.loginBtn') }}
+      </el-button>
     </el-form>
   </div>
 </template>

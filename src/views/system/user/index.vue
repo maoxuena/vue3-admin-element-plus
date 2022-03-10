@@ -40,9 +40,9 @@
         <el-table-column width="180" :label="$t('msg.excel.role')">
           <template #default="{ row }">
             <div v-if="row.role && row.role.length > 0">
-              <el-tag v-for="item in row.role" :key="item.id">{{
-                item.title
-              }}</el-tag>
+              <el-tag v-for="item in row.role" :key="item.id">
+                {{ item.title }}
+              </el-tag>
             </div>
             <div v-else>
               <el-tag>{{ $t('msg.excel.defaultRole') }}</el-tag>
@@ -62,15 +62,19 @@
           width="200"
         >
           <template #default="{ row }">
-            <el-button type="primary" size="small">{{
-              $t('msg.excel.show')
-            }}</el-button>
-            <el-button type="info" size="small">{{
-              $t('msg.excel.showRole')
-            }}</el-button>
-            <el-button type="danger" size="small" @click="onRemoveClick(row)">{{
-              $t('msg.excel.remove')
-            }}</el-button>
+            <el-button
+              type="primary"
+              size="small"
+              @click="onShowClick(row._id)"
+            >
+              {{ $t('msg.excel.show') }}
+            </el-button>
+            <el-button type="info" size="small">
+              {{ $t('msg.excel.showRole') }}
+            </el-button>
+            <el-button type="danger" size="small" @click="onRemoveClick(row)">
+              {{ $t('msg.excel.remove') }}
+            </el-button>
           </template>
         </el-table-column>
       </el-table>

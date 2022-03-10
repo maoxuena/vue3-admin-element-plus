@@ -30,9 +30,9 @@
             <a target="_blank" href="">
               <el-dropdown-item>{{ $t('msg.navBar.course') }}</el-dropdown-item>
             </a>
-            <el-dropdown-item divided @click="logout">{{
-              $t('msg.navBar.logout')
-            }}</el-dropdown-item>
+            <el-dropdown-item divided @click="logout">
+              {{ $t('msg.navBar.logout') }}
+            </el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>

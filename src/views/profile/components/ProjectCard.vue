@@ -46,9 +46,9 @@
 
       <div class="project-bio-section">
         <div class="project-bio-section-header">
-          <svg-icon icon="reward" /><span>{{
-            $t('msg.profile.projectFunction')
-          }}</span>
+          <svg-icon icon="reward" /><span>
+            {{ $t('msg.profile.projectFunction') }}
+          </span>
         </div>
         <div class="project-bio-section-body">
           <div class="progress-item" v-for="item in features" :key="item.id">

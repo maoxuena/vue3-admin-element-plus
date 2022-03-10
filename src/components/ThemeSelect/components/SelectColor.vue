@@ -15,9 +15,9 @@
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="closed">{{ $t('msg.universal.cancel') }}</el-button>
-        <el-button type="primary" @click="comfirm">{{
-          $t('msg.universal.confirm')
-        }}</el-button>
+        <el-button type="primary" @click="comfirm">
+          {{ $t('msg.universal.confirm') }}
+        </el-button>
       </span>
     </template>
   </el-dialog>
