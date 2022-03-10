@@ -1,9 +1,12 @@
 <template>
   <div class="user-manage-container">
     <el-card class="header">
-      <el-button type="primary" @click="onImportExcelClick">{{
-        $t('msg.excel.importExcel')
-      }}</el-button>
+      <el-button type="primary" @click="onImportExcelClick">
+        {{ $t('msg.excel.importExcel') }}
+      </el-button>
+      <el-button type="success" @click="onToExcelClick">
+        {{ $t('msg.excel.exportExcel') }}
+      </el-button>
     </el-card>
     <el-card>
       <el-table :data="tableData" border style="width: 100%">
@@ -37,12 +40,12 @@
         <el-table-column width="180" :label="$t('msg.excel.role')">
           <template #default="{ row }">
             <div v-if="row.role && row.role.length > 0">
-              <el-tag v-for="item in row.role" :key="item.id" size="mini">{{
+              <el-tag v-for="item in row.role" :key="item.id">{{
                 item.title
               }}</el-tag>
             </div>
             <div v-else>
-              <el-tag size="mini">{{ $t('msg.excel.defaultRole') }}</el-tag>
+              <el-tag>{{ $t('msg.excel.defaultRole') }}</el-tag>
             </div>
           </template>
         </el-table-column>
@@ -93,6 +96,7 @@
     >
       <import-comp @uploadSuccess="uploadSuccess"></import-comp>
     </el-dialog>
+    <export-comp v-model="exportToExcelVisible"></export-comp>
   </div>
 </template>
 
@@ -103,6 +107,7 @@ import { useI18n } from 'vue-i18n'
 import { watchSwitchLang } from '@/utils/i18n'
 import { getUserManageList, deleteUser } from '@/api/user-manage'
 import ImportComp from './import'
+import ExportComp from './export'
 
 // 数据相关
 const tableData = ref([])
@@ -156,6 +161,14 @@ const onImportExcelClick = () => {
  */
 const handleClose = () => {
   dialogVisible.value = false
+}
+
+/**
+ * excel 导出点击事件
+ */
+const exportToExcelVisible = ref(false)
+const onToExcelClick = () => {
+  exportToExcelVisible.value = true
 }
 
 /**
