@@ -107,6 +107,7 @@
 <script setup>
 import { ref, onActivated } from 'vue'
 import { ElMessageBox, ElMessage } from 'element-plus'
+import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { watchSwitchLang } from '@/utils/i18n'
 import { getUserManageList, deleteUser } from '@/api/user-manage'
@@ -168,14 +169,6 @@ const handleClose = () => {
 }
 
 /**
- * excel 导出点击事件
- */
-const exportToExcelVisible = ref(false)
-const onToExcelClick = () => {
-  exportToExcelVisible.value = true
-}
-
-/**
  * 导入成功
  */
 const uploadSuccess = () => {
@@ -183,6 +176,22 @@ const uploadSuccess = () => {
   handleClose()
   // 重新获取数据
   getListData()
+}
+
+/**
+ * excel 导出点击事件
+ */
+const exportToExcelVisible = ref(false)
+const onToExcelClick = () => {
+  exportToExcelVisible.value = true
+}
+
+const router = useRouter()
+/**
+ * 查看按钮点击事件
+ */
+const onShowClick = id => {
+  router.push(`/system/user/info/${id}`)
 }
 
 /**

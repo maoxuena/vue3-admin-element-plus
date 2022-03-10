@@ -13,6 +13,7 @@ import '@/styles/index.scss'
 import installIcons from '@/icons'
 // 全局属性 filter
 import installFilter from '@/filters'
+import installDirective from '@/directives'
 
 // 导入路由鉴权
 import './permission'
@@ -26,6 +27,7 @@ const app = createApp(App)
 installElementPlus(app)
 installIcons(app)
 installFilter(app)
+installDirective(app)
 // 统一注册el-icon图标
 for (const iconName in ElIconModules) {
   app.component(transElIconName(iconName), ElIconModules[iconName])

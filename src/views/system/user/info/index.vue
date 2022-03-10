@@ -110,7 +110,7 @@ const printObj = {
   // 打印区域
   id: 'userInfoBox',
   // 打印标题
-  popTitle: 'imooc-vue-element-admin',
+  popTitle: 'vue3-admin-element-plus',
   // 打印前
   beforeOpenCallback (vue) {
     printLoading.value = true
@@ -128,7 +128,7 @@ const printObj = {
   text-align: right;
 }
 .user-info-box {
-  width: 1024px;
+  max-width: 1024px;
   margin: 0 auto;
   .title {
     text-align: center;

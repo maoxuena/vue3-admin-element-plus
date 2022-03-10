@@ -19,9 +19,7 @@ const privateRoutes = [
         path: '/article/ranking',
         name: 'articleRanking',
         component: () =>
-          import(
-            /* webpackChunkName: "article" */ '@/views/article/ranking/index'
-          ),
+          import(/* webpackChunkName: "article" */ '@/views/article/ranking/index'),
         meta: {
           title: 'articleRanking',
           icon: 'article-ranking'
@@ -31,9 +29,7 @@ const privateRoutes = [
         path: '/article/:id',
         name: 'articleDetail',
         component: () =>
-          import(
-            /* webpackChunkName: "article" */ '@/views/article/detail/index'
-          ),
+          import(/* webpackChunkName: "article" */ '@/views/article/detail/index'),
         meta: {
           title: 'articleDetail'
         }
@@ -64,9 +60,7 @@ const privateRoutes = [
         path: '/system/user/info/:id',
         name: 'userInfo',
         component: () =>
-          import(
-            /* webpackChunkName: "user" */ '@/views/system/user/info/index'
-          ),
+          import(/* webpackChunkName: "user" */ '@/views/system/user/info/index'),
         props: true,
         meta: {
           title: 'userInfo'
@@ -86,9 +80,7 @@ const privateRoutes = [
         path: '/system/permission',
         name: 'systemPermission',
         component: () =>
-          import(
-            /* webpackChunkName: "permission" */ '@/views/system/permission/index'
-          ),
+          import(/* webpackChunkName: "permission" */ '@/views/system/permission/index'),
         meta: {
           title: 'permissionManage',
           icon: 'permission'
