@@ -101,10 +101,6 @@ const publicRoutes = [
   },
   {
     path: '/',
-    component: () => import('@/layout/index')
-  },
-  {
-    path: '/',
     component: layout,
     redirect: '/dashboard',
     children: [
