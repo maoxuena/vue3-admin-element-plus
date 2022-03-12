@@ -1,99 +1,111 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import layout from '@/layout'
+import UserManageRouter from './modules/UserManage'
+import RoleListRouter from './modules/RoleList'
+import PermissionListRouter from './modules/PermissionList'
+import ArticleRouter from './modules/Article'
+import ArticleCreaterRouter from './modules/ArticleCreate'
 
 /**
  * 私有路由表
  */
-const privateRoutes = [
-  {
-    path: '/article',
-    component: layout,
-    redirect: '/article/ranking',
-    name: 'article',
-    meta: {
-      title: 'article',
-      icon: 'article'
-    },
-    children: [
-      {
-        path: '/article/ranking',
-        name: 'articleRanking',
-        component: () =>
-          import(/* webpackChunkName: "article" */ '@/views/article/ranking/index'),
-        meta: {
-          title: 'articleRanking',
-          icon: 'article-ranking'
-        }
-      },
-      {
-        path: '/article/:id',
-        name: 'articleDetail',
-        component: () =>
-          import(/* webpackChunkName: "article" */ '@/views/article/detail/index'),
-        meta: {
-          title: 'articleDetail'
-        }
-      }
-    ]
-  },
-  {
-    path: '/system',
-    component: layout,
-    redirect: '/system/user',
-    name: 'system',
-    meta: {
-      title: 'systemManage',
-      icon: 'personnel'
-    },
-    children: [
-      {
-        path: '/system/user',
-        name: 'systemUser',
-        component: () =>
-          import(/* webpackChunkName: "user" */ '@/views/system/user/index'),
-        meta: {
-          title: 'userManage',
-          icon: 'personnel-manage'
-        }
-      },
-      {
-        path: '/system/user/info/:id',
-        name: 'userInfo',
-        component: () =>
-          import(/* webpackChunkName: "user" */ '@/views/system/user/info/index'),
-        props: true,
-        meta: {
-          title: 'userInfo'
-        }
-      },
-      {
-        path: '/system/role',
-        name: 'systemRole',
-        component: () =>
-          import(/* webpackChunkName: "role" */ '@/views/system/role/index'),
-        meta: {
-          title: 'roleManage',
-          icon: 'role'
-        }
-      },
-      {
-        path: '/system/permission',
-        name: 'systemPermission',
-        component: () =>
-          import(/* webpackChunkName: "permission" */ '@/views/system/permission/index'),
-        meta: {
-          title: 'permissionManage',
-          icon: 'permission'
-        }
-      }
-    ]
-  }
+export const privateRoutes = [
+  UserManageRouter,
+  RoleListRouter,
+  PermissionListRouter,
+  ArticleRouter,
+  ArticleCreaterRouter
 ]
+// export const privateRoutes = [
+//   {
+//     path: '/article',
+//     component: layout,
+//     redirect: '/article/ranking',
+//     name: 'article',
+//     meta: {
+//       title: 'article',
+//       icon: 'article'
+//     },
+//     children: [
+//       {
+//         path: '/article/ranking',
+//         name: 'articleRanking',
+//         component: () =>
+//           import(/* webpackChunkName: "article" */ '@/views/article/ranking/index'),
+//         meta: {
+//           title: 'articleRanking',
+//           icon: 'article-ranking'
+//         }
+//       },
+//       {
+//         path: '/article/:id',
+//         name: 'articleDetail',
+//         component: () =>
+//           import(/* webpackChunkName: "article" */ '@/views/article/detail/index'),
+//         meta: {
+//           title: 'articleDetail'
+//         }
+//       }
+//     ]
+//   },
+//   {
+//     path: '/system',
+//     component: layout,
+//     redirect: '/system/user',
+//     name: 'system',
+//     meta: {
+//       title: 'systemManage',
+//       icon: 'personnel'
+//     },
+//     children: [
+//       {
+//         path: '/system/user',
+//         name: 'systemUser',
+//         component: () =>
+//           import(/* webpackChunkName: "user" */ '@/views/system/user/index'),
+//         meta: {
+//           title: 'userManage',
+//           icon: 'personnel-manage'
+//         }
+//       },
+//       {
+//         path: '/system/user/info/:id',
+//         name: 'userInfo',
+//         component: () =>
+//           import(/* webpackChunkName: "user" */ '@/views/system/user/info/index'),
+//         props: true,
+//         meta: {
+//           title: 'userInfo'
+//         }
+//       },
+//       {
+//         path: '/system/role',
+//         name: 'systemRole',
+//         component: () =>
+//           import(/* webpackChunkName: "role" */ '@/views/system/role/index'),
+//         meta: {
+//           title: 'roleManage',
+//           icon: 'role'
+//         }
+//       },
+//       {
+//         path: '/system/permission',
+//         name: 'systemPermission',
+//         component: () =>
+//           import(/* webpackChunkName: "permission" */ '@/views/system/permission/index'),
+//         meta: {
+//           title: 'permissionManage',
+//           icon: 'permission'
+//         }
+//       }
+//     ]
+//   }
+// ]
 
 /**
  * 公开路由表
  */
-const publicRoutes = [
+export const publicRoutes = [
   {
     path: '/login',
     component: () =>
@@ -146,7 +158,7 @@ const publicRoutes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: [...publicRoutes, ...privateRoutes]
+  routes: publicRoutes
 })
 
 export default router

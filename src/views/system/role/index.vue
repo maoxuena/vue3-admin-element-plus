@@ -2,9 +2,9 @@
   <div class="">
     <el-card>
       <el-table :data="allRoles" border style="width: 100%">
-        <el-table-column :label="$t('msg.role.index')" type="index" width="120">
+        <el-table-column :label="$t('msg.role.index')" type="index" width="60">
         </el-table-column>
-        <el-table-column :label="$t('msg.role.name')" prop="title">
+        <el-table-column :label="$t('msg.role.name')" prop="title" width="120">
         </el-table-column>
         <el-table-column :label="$t('msg.role.desc')" prop="describe">
         </el-table-column>
