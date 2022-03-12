@@ -12,13 +12,13 @@
         <el-table-column
           prop="permissionName"
           :label="$t('msg.permission.name')"
-          width="120"
+          width="180"
         >
         </el-table-column>
         <el-table-column
           prop="permissionMark"
           :label="$t('msg.permission.mark')"
-          width="120"
+          width="180"
         >
         </el-table-column>
         <el-table-column
