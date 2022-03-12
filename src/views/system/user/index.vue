@@ -27,7 +27,11 @@
         >
         </el-table-column>
         <!-- 头像 -->
-        <el-table-column :label="$t('msg.excel.avatar')" align="center">
+        <el-table-column
+          width="80"
+          :label="$t('msg.excel.avatar')"
+          align="center"
+        >
           <template v-slot="{ row }">
             <el-image
               class="avatar"
@@ -37,7 +41,7 @@
           </template>
         </el-table-column>
         <!-- 角色 -->
-        <el-table-column width="180" :label="$t('msg.excel.role')">
+        <el-table-column :label="$t('msg.excel.role')">
           <template #default="{ row }">
             <div v-if="row.role && row.role.length > 0">
               <el-tag v-for="item in row.role" :key="item.id">
@@ -69,7 +73,7 @@
             >
               {{ $t('msg.excel.show') }}
             </el-button>
-            <el-button type="info" size="small">
+            <el-button type="info" size="small" @click="onShowRoleClick(row)">
               {{ $t('msg.excel.showRole') }}
             </el-button>
             <el-button type="danger" size="small" @click="onRemoveClick(row)">
@@ -92,20 +96,20 @@
         </el-pagination>
       </div>
     </el-card>
-    <el-dialog
-      v-model="dialogVisible"
-      title="导入用户"
-      width="360px"
-      :before-close="handleClose"
-    >
+    <el-dialog v-model="dialogVisible" title="导入用户" width="360px">
       <import-comp @uploadSuccess="uploadSuccess"></import-comp>
     </el-dialog>
     <export-comp v-model="exportToExcelVisible"></export-comp>
+    <roles-comp
+      v-model="roleDialogVisible"
+      :userId="selectUserId"
+      @updateRole="getListData"
+    ></roles-comp>
   </div>
 </template>
 
 <script setup>
-import { ref, onActivated } from 'vue'
+import { ref, watch } from 'vue'
 import { ElMessageBox, ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
@@ -113,6 +117,7 @@ import { watchSwitchLang } from '@/utils/i18n'
 import { getUserManageList, deleteUser } from '@/api/user-manage'
 import ImportComp from './import'
 import ExportComp from './export'
+import RolesComp from './roles'
 
 // 数据相关
 const tableData = ref([])
@@ -133,7 +138,7 @@ getListData()
 // 监听语言切换
 watchSwitchLang(getListData)
 // 重新激活页面后，重新加载数据
-onActivated(getListData)
+// onActivated(getListData)
 
 // 分页相关
 /**
@@ -162,18 +167,11 @@ const onImportExcelClick = () => {
 }
 
 /**
- * 关闭dialog
- */
-const handleClose = () => {
-  dialogVisible.value = false
-}
-
-/**
  * 导入成功
  */
 const uploadSuccess = () => {
   // 关闭dialog
-  handleClose()
+  dialogVisible.value = false
   // 重新获取数据
   getListData()
 }
@@ -193,6 +191,21 @@ const router = useRouter()
 const onShowClick = id => {
   router.push(`/system/user/info/${id}`)
 }
+
+/**
+ * 查看角色的点击事件
+ */
+const selectUserId = ref('')
+const roleDialogVisible = ref(false)
+const onShowRoleClick = row => {
+  selectUserId.value = row._id
+  roleDialogVisible.value = true
+}
+
+// 保证每次打开重新获取用户角色数据
+watch(roleDialogVisible, val => {
+  if (!val) selectUserId.value = ''
+})
 
 /**
  * 删除按钮点击事件
