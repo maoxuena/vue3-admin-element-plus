@@ -1,18 +1,33 @@
 <template>
-  <upload-excel :onSuccess="onSuccess"></upload-excel>
+  <el-dialog
+    :model-value="modelValue"
+    :title="$t('msg.excel.importTitle')"
+    @close="closed"
+    width="30%"
+  >
+    <upload-excel :onSuccess="onSuccess"></upload-excel>
+  </el-dialog>
 </template>
 
 <script setup>
-import { defineEmits } from 'vue'
+import { defineProps, defineEmits } from 'vue'
+import { ElMessage } from 'element-plus'
+import { useI18n } from 'vue-i18n'
 import UploadExcel from '@/components/UploadExcel'
 import { userBatchImport } from '@/api/user-manage'
 import { USER_RELATIONS, formatDate } from './utils'
-import { ElMessage } from 'element-plus'
-import { useI18n } from 'vue-i18n'
+
+defineProps({
+  modelValue: {
+    type: Boolean,
+    required: true
+  }
+})
+
+const emits = defineEmits(['update:modelValue', 'updateUser'])
 
 const i18n = useI18n()
 
-const emits = defineEmits(['uploadSuccess'])
 /**
  * 数据解析成功之后的回调
  */
@@ -23,7 +38,8 @@ const onSuccess = async ({ header, results }) => {
     message: results.length + i18n.t('msg.excel.importSuccess'),
     type: 'success'
   })
-  emits('uploadSuccess', false)
+  closed()
+  emits('updateUser')
 }
 
 /**
@@ -43,6 +59,13 @@ const generateData = results => {
     arr.push(userInfo)
   })
   return arr
+}
+
+/**
+ * 关闭
+ */
+const closed = () => {
+  emits('update:modelValue', false)
 }
 </script>
 

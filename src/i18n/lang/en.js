@@ -136,6 +136,8 @@ export default {
     defaultRole: 'User',
     remove: 'delete',
     removeSuccess: 'Deleted successfully',
+    importTitle: 'Import user data',
+    exportTitle: 'Export to excel',
     title: 'Export to excel',
     placeholder: 'excel file name',
     defaultName: 'User Management Form',

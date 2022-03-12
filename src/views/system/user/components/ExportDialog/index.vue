@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    :title="$t('msg.excel.title')"
+    :title="$t('msg.excel.exportTitle')"
     :model-value="modelValue"
     @close="closed"
     width="30%"

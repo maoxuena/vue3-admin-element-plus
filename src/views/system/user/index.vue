@@ -96,15 +96,19 @@
         </el-pagination>
       </div>
     </el-card>
-    <el-dialog v-model="dialogVisible" title="导入用户" width="360px">
-      <import-comp @uploadSuccess="uploadSuccess"></import-comp>
-    </el-dialog>
-    <export-comp v-model="exportToExcelVisible"></export-comp>
-    <roles-comp
+    <!-- 导入 -->
+    <import-dialog
+      v-model="importToExcelVisible"
+      @updateUser="getListData"
+    ></import-dialog>
+    <!-- 导出 -->
+    <export-dialog v-model="exportToExcelVisible"></export-dialog>
+    <!-- 配置角色 -->
+    <roles-dialog
       v-model="roleDialogVisible"
       :userId="selectUserId"
       @updateRole="getListData"
-    ></roles-comp>
+    ></roles-dialog>
   </div>
 </template>
 
@@ -115,9 +119,9 @@ import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { watchSwitchLang } from '@/utils/i18n'
 import { getUserManageList, deleteUser } from '@/api/user-manage'
-import ImportComp from './import'
-import ExportComp from './export'
-import RolesComp from './roles'
+import ImportDialog from './components/ImportDialog'
+import ExportDialog from './components/ExportDialog'
+import RolesDialog from './components/RolesDialog.vue'
 
 // 数据相关
 const tableData = ref([])
@@ -157,23 +161,12 @@ const handleCurrentChange = currentPage => {
   getListData()
 }
 
-// 导入相关
-const dialogVisible = ref(false)
 /**
  * excel 导入点击事件
  */
+const importToExcelVisible = ref(false)
 const onImportExcelClick = () => {
-  dialogVisible.value = true
-}
-
-/**
- * 导入成功
- */
-const uploadSuccess = () => {
-  // 关闭dialog
-  dialogVisible.value = false
-  // 重新获取数据
-  getListData()
+  importToExcelVisible.value = true
 }
 
 /**
