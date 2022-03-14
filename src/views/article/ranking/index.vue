@@ -52,13 +52,14 @@
 </template>
 
 <script setup>
-import { ref, onActivated } from 'vue'
+import { ref, onActivated, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessageBox, ElMessage } from 'element-plus'
 import { useI18n } from 'vue-i18n'
 import { getArticleList, deleteArticle } from '@/api/article'
 import { watchSwitchLang } from '@/utils/i18n'
 import { dynamicData, selectDynamicLabel, tableColumns } from './dynamic'
+import { tableRef, initSortable } from './sortable'
 
 // 数据相关
 const tableData = ref([])
@@ -81,6 +82,11 @@ const getListData = async () => {
 watchSwitchLang(getListData)
 // 处理数据不重新加载的问题
 onActivated(getListData)
+
+// 表格拖拽相关
+onMounted(() => {
+  initSortable(tableData, getListData)
+})
 
 /**
  * size 改变触发
