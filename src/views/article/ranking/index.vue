@@ -75,7 +75,6 @@ const getListData = async () => {
   })
   tableData.value = result.list
   total.value = result.total
-  console.log(tableData.value)
 }
 
 // 监听语言切换

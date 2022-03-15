@@ -26,7 +26,6 @@ router.beforeEach(async (to, from, next) => {
           'permission/filterRoutes',
           permission.menus
         )
-        console.log(filterRoutes)
         // 利用 addRoute 循环添加
         filterRoutes.forEach(item => {
           router.addRoute(item)
