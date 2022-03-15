@@ -53,7 +53,7 @@ const initEditor = () => {
   editor.create()
 }
 
-// 编辑相关
+// 编辑相关（数据回显）
 watch(
   () => props.detail,
   val => {
