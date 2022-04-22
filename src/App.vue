@@ -1,3 +1,4 @@
+<!-- 参照：https://imooc-admin.lgdsunday.club/login -->
 <template>
   <router-view />
 </template>
