@@ -152,6 +152,12 @@ $height: 40px;
       height: $height;
       width: 85%;
 
+      .el-input__wrapper{
+        width: 100%;
+        background: none;
+        box-shadow: none;
+      }
+
       input {
         background: transparent;
         border: 0px;
