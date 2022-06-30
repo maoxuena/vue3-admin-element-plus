@@ -33,7 +33,13 @@ export default {
     articleRanking: 'ArticleRanking',
     articleCreate: 'ArticleCreate',
     articleDetail: 'ArticleDetail',
-    articleEditor: 'ArticleEditor'
+    articleEditor: 'ArticleEditor',
+    charts: 'Charts',
+    d3: 'D3',
+    eCharts: 'ECharts',
+    line: 'Line',
+    bar: 'Bar',
+    map: 'Map'
   },
   toast: {
     switchLangSuccess: 'Switch Language Success'

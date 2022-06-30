@@ -33,7 +33,13 @@ export default {
     articleRanking: '文章排名',
     articleCreate: '创建文章',
     articleDetail: '文章详情',
-    articleEditor: '文章编辑'
+    articleEditor: '文章编辑',
+    charts: '图表',
+    d3: 'D3',
+    eCharts: 'ECharts',
+    line: '折线图',
+    bar: '柱状图',
+    map: '地图'
   },
   toast: {
     switchLangSuccess: '切换语言成功'

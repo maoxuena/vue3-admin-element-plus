@@ -6,6 +6,7 @@ import RoleListRouter from './modules/RoleList'
 import PermissionListRouter from './modules/PermissionList'
 import ArticleRouter from './modules/Article'
 import ArticleCreaterRouter from './modules/ArticleCreate'
+import Charts from './modules/Charts'
 
 /**
  * 私有路由表
@@ -15,7 +16,8 @@ export const privateRoutes = [
   RoleListRouter,
   PermissionListRouter,
   ArticleRouter,
-  ArticleCreaterRouter
+  ArticleCreaterRouter,
+  Charts
 ]
 
 /**

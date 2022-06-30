@@ -29,6 +29,8 @@ export default {
         // 权限名 与 路由的 name 匹配
         routes.push(...privateRoutes.filter(item => item.name === key))
       })
+      // !item.name：name为空则不需要权限
+      routes.push(...privateRoutes.filter(item => !item.name))
       // 最后添加，所有不匹配路由全部进入 404 的路由配置
       routes.push({
         path: '/:catchAll(.*)',
