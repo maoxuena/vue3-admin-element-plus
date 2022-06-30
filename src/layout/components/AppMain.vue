@@ -4,7 +4,7 @@
     <router-view v-slot="{ Component, route }">
       <transition name="fade-transform" mode="out-in">
         <keep-alive>
-          <component :is="Component" :key="route.path" />
+          <component :is="Component" :key="getFirstLevelRoute(route).path" />
         </keep-alive>
       </transition>
     </router-view>
@@ -33,6 +33,13 @@ const getTitle = route => {
     title = generateTitle(route.meta.title)
   }
   return title
+}
+
+const getFirstLevelRoute = route => {
+  if (!Array.isArray(route.matched) || route.matched.length === 0) {
+    return route
+  }
+  return route.matched[0]
 }
 
 /**
