@@ -20,8 +20,8 @@ onMounted(() => {
   driver = new Driver({
     // 禁止点击蒙版关闭
     allowClose: false,
-    opacity: 0.6,
-    padding: 0,
+    opacity: 0,
+    padding: 5,
     closeBtnText: i18n.t('msg.guide.close'),
     nextBtnText: i18n.t('msg.guide.next'),
     prevBtnText: i18n.t('msg.guide.prev'),

@@ -55,3 +55,14 @@ div:focus {
     height: 0;
   }
 }
+
+
+// 功能引导样式
+div#driver-page-overlay{
+  z-index: 100004 !important;
+}
+div#driver-highlighted-element-stage{
+  transition: none!important;
+  background: transparent!important;
+  outline: 5000px solid rgba(0,0,0,.75);
+}
