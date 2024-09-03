@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import store from '@/store'
 import layout from '@/layout'
+import empty from '@/layout/empty'
 import UserManageRouter from './modules/UserManage'
 import RoleListRouter from './modules/RoleList'
 import PermissionListRouter from './modules/PermissionList'
@@ -8,6 +9,9 @@ import ArticleRouter from './modules/Article'
 import ArticleCreaterRouter from './modules/ArticleCreate'
 import Charts from './modules/Charts'
 
+console.log('router/index.js iframe', window.parent !== window)
+console.log('router/index.js 微前端 micro-app', window.__MICRO_APP_ENVIRONMENT__)
+console.log('router/index.js 微前端 无界', window.__POWERED_BY_WUJIE__)
 /**
  * 私有路由表
  */
@@ -31,7 +35,7 @@ export const publicRoutes = [
   },
   {
     path: '/',
-    component: layout,
+    component: window.parent !== window || window.__MICRO_APP_ENVIRONMENT__ || window.__POWERED_BY_WUJIE__ ? empty : layout,
     redirect: '/dashboard',
     children: [
       // 主页/仪表盘

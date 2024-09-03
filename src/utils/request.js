@@ -6,6 +6,11 @@ import md5 from 'md5'
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
+  // 给所有axios实例配置跨域携带cookie
+  // withCredentials: true,
+  // headers: {
+  //   'Content-Type': 'application/json; charset=UTF-8;'
+  // },
   timeout: 5000
 })
 
@@ -67,7 +72,7 @@ service.interceptors.response.use(
  */
 function getTestICode () {
   const now = parseInt(Date.now() / 1000)
-  const code = now + 'LGD_Sunday-1991'
+  const code = now + 'LGD_Sunday-1991-12-30'
   return {
     icode: md5(code),
     time: now

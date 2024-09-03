@@ -35,3 +35,14 @@ export const removeItem = key => {
 export const removeAllItem = key => {
   window.localStorage.clear()
 }
+
+/**
+ * 删除清除以特定字符串开头的数据
+ */
+export const removeItemWithPrefix = prefix => {
+  Object.keys(window.localStorage).forEach(key => {
+    if (key.startsWith(prefix)) {
+      window.localStorage.removeItem(key)
+    }
+  })
+}

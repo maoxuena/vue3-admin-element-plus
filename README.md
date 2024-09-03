@@ -10,6 +10,11 @@ npm install
 npm run serve
 ```
 
+报错：Error: error:0308010C:digital envelope routines::unsupported
+```
+$env:NODE_OPTIONS="--openssl-legacy-provider"
+```
+
 ### Compiles and minifies for production
 ```
 npm run build

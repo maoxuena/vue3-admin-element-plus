@@ -11,6 +11,9 @@ const whiteList = ['/login']
  * @param {*} next 是否要去
  */
 router.beforeEach(async (to, from, next) => {
+  console.log('permission.js iframe', window.parent !== window)
+  console.log('permission.js 微前端 micro-app', window.__MICRO_APP_ENVIRONMENT__)
+  console.log('permission.js 微前端 无界', window.__POWERED_BY_WUJIE__)
   // 用户已登录，存在 token
   if (store.getters.token) {
     // 用户已登录，不允许进入 login，跳转到主页
