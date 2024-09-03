@@ -14,6 +14,9 @@ const service = axios.create({
   timeout: 5000
 })
 
+service.defaults.withCredentials = true // 跨域时候允许携带凭证
+service.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
+
 // 请求拦截器
 service.interceptors.request.use(
   config => {
