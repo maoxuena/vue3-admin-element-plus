@@ -85,10 +85,11 @@ watchSwitchLang(() => {
 
 <style lang="scss" scoped>
 .app-main {
-  min-height: 100vh;
+  min-height: 100%;
   width: 100%;
   position: relative;
   overflow: hidden;
+  padding: 20px;
   box-sizing: border-box;
 }
 </style>

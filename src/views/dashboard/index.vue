@@ -1,5 +1,5 @@
 <template>
-  <div class="">主页</div>
+  <div class="">dashboard 主页</div>
 </template>
 
 <script setup></script>

@@ -11,6 +11,9 @@ const whiteList = ['/login']
  * @param {*} next 是否要去
  */
 router.beforeEach(async (to, from, next) => {
+  console.log(router.getRoutes())
+  console.log('to', to)
+  console.log('from', from)
   console.log('permission.js iframe', window.parent !== window)
   console.log('permission.js 微前端 micro-app', window.__MICRO_APP_ENVIRONMENT__)
   console.log('permission.js 微前端 无界', window.__POWERED_BY_WUJIE__)
@@ -24,6 +27,7 @@ router.beforeEach(async (to, from, next) => {
       if (!store.getters.hasUserInfo) {
         // 触发获取用户信息的 action，并获取用户当前权限
         const { permission } = await store.dispatch('user/getUserInfo')
+        console.log('子应用 获取用户信息', permission)
         // 处理用户权限，筛选出需要添加的权限
         const filterRoutes = await store.dispatch(
           'permission/filterRoutes',
@@ -34,7 +38,8 @@ router.beforeEach(async (to, from, next) => {
           router.addRoute(item)
         })
         // 添加完动态路由之后，需要在进行一次主动跳转
-        return next(to.path)
+        const redirect = decodeURIComponent(from.query.redirect || to.path)
+        return next(redirect)
       }
       next()
     }
@@ -43,7 +48,7 @@ router.beforeEach(async (to, from, next) => {
     if (whiteList.indexOf(to.path) > -1) {
       next()
     } else {
-      next('/login')
+      next({ path: '/login', replace: true, query: { redirect: to.path } })
     }
   }
 })

@@ -58,7 +58,13 @@ export default {
       this.commit('user/setUserInfo', {})
       removeAllItem()
       // TODO:清理权限相关配置
-      router.push('/login')
+      // router.push('/login')
+      router.replace({
+        path: '/login',
+        query: {
+          redirect: router.currentRoute.value.fullPath
+        }
+      })
     }
   }
 }
