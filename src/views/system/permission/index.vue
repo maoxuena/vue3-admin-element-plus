@@ -49,4 +49,5 @@ const getPermissionList = async () => {
 }
 getPermissionList()
 watchSwitchLang(getPermissionList)
+console.log('localStorage', window.localStorage)
 </script>

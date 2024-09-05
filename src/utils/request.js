@@ -1,5 +1,6 @@
 import axios from 'axios'
 import store from '@/store'
+import router from '@/router'
 import { ElMessage } from 'element-plus'
 import { isCheckTimeout } from '@/utils/auth'
 import md5 from 'md5'
@@ -26,8 +27,16 @@ service.interceptors.request.use(
     // 在这里统一注入token
     if (store.getters.token) {
       if (isCheckTimeout()) {
-        // 退出操作
-        store.dispatch('user/logout')
+        // 重新登入（单点）
+        if (store.getters.isMicro) {
+          store.commit('user/setToken', '')
+          store.commit('user/setUserInfo', {})
+          router.push(store.getters.toPath)
+          return
+        } else {
+          // 退出操作
+          store.dispatch('user/logout')
+        }
         return Promise.reject(new Error('token 失效'))
       }
       config.headers.Authorization = `Bearer ${store.getters.token}`
@@ -63,7 +72,16 @@ service.interceptors.response.use(
       error.response.data.code === 401
     ) {
       // token超时
-      store.dispatch('user/logout')
+      if (store.getters.isMicro) {
+      // 重新登入（单点）
+        store.commit('user/setToken', '')
+        store.commit('user/setUserInfo', {})
+        router.push(store.getters.toPath)
+        return null
+      } else {
+        // 退出登录
+        store.dispatch('user/logout')
+      }
     }
     ElMessage.error(error.message) // 提示错误信息
     return Promise.reject(error)

@@ -233,6 +233,7 @@ const onRemoveClick = row => {
     getListData()
   })
 }
+console.log('localStorage', window.localStorage)
 </script>
 
 <style lang="scss" scoped>

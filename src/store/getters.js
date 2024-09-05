@@ -4,6 +4,8 @@ import { generateColors } from '@/utils/theme'
 
 // 快捷访问
 const getters = {
+  isMicro: state => state.user.isMicro,
+  toPath: state => state.user.toPath,
   token: state => state.user.token,
   userInfo: state => state.user.userInfo,
   /**

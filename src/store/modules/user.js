@@ -8,10 +8,15 @@ import { setTimeStamp } from '@/utils/auth'
 export default {
   namespaced: true,
   state: () => ({
+    isMicro: window.parent !== window || window.__MICRO_APP_ENVIRONMENT__ || window.__POWERED_BY_WUJIE__, // 是否是微前端
+    toPath: '',
     token: getItem(TOKEN) || '',
     userInfo: {}
   }),
   mutations: {
+    setToPath (state, toPath) {
+      state.toPath = toPath
+    },
     setToken (state, token) {
       state.token = token
       setItem(TOKEN, token)
@@ -25,7 +30,7 @@ export default {
      * 登录请求动作
      */
     login (context, userInfo) {
-      const { username, password } = userInfo
+      const { username, password, sso = false } = userInfo
       return new Promise((resolve, reject) => {
         login({
           username,
@@ -34,7 +39,11 @@ export default {
           .then(data => {
             this.commit('user/setToken', data.token)
             // 跳转
-            router.push('/')
+            if (!sso) {
+              const currentRoute = router.currentRoute.value
+              const redirect = currentRoute.query.redirect || '/'
+              router.push(redirect)
+            }
             // 保存登录时间
             setTimeStamp()
             resolve()
@@ -49,8 +58,9 @@ export default {
      */
     async getUserInfo (context) {
       const res = await getUserInfo()
-      this.commit('user/setUserInfo', res)
-      return res
+      const result = res || {}
+      this.commit('user/setUserInfo', res || {})
+      return result
     },
     logout () {
       resetRouter()
@@ -64,6 +74,18 @@ export default {
         query: {
           redirect: router.currentRoute.value.fullPath
         }
+      })
+    },
+    /**
+     * 是否需要单点登录
+     * 微环境 或者 iframe 则需要，反之，不需要
+     */
+    async isSsoLogin() {
+      // 固定用户名密码模拟单点登录
+      await this.dispatch('user/login', {
+        username: 'super-admin',
+        password: '123456',
+        sso: true
       })
     }
   }
